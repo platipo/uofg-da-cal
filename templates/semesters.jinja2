@@ -1,0 +1,22 @@
+[
+    {% for semester in arg %}
+    {% set color = colorhash(semester.id).hex %}
+        {
+            "title": "Semester {{ semester.id }}",
+            "start": "{{ semester.start }}",
+            "end": "{{ semester.midterm }}",
+            "display": "background",
+            "allDay": true,
+            "backgroundColor": "{{ color }}"
+        },
+        {
+            "title": "Semester {{ semester.id }}",
+            "start": "{{ semester.midterm + timedelta(days=7) }}",
+            "end": "{{ semester.end }}",
+            "display": "background",
+            "allDay": true,
+            "backgroundColor": "{{ color }}"
+        }
+        {% if not loop.last %},{% endif %}
+    {% endfor %}
+]

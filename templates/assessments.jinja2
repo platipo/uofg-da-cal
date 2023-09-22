@@ -1,0 +1,14 @@
+[
+    {% for assessment in arg %}
+        {% set color = colorhash(assessment.subject.class_id).hex %}
+        {
+            "title": "{{ assessment.name }}",
+            "start": "{{ assessment.handed_out }}",
+            "end": "{{ assessment.due }}",
+            "backgroundColor": "{{ color }}",
+            "displayEventTime": true
+        }
+        {% if not loop.last %},{% endif %}
+    {% endfor %}
+
+]
